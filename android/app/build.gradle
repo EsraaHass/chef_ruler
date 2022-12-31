@@ -39,8 +39,9 @@ android {
         applicationId "com.example.chef_ruler"
         // You can update the following values to match your application needs. 
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 19
+        multiDexEnabled true
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -56,4 +57,10 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'  //with androidx libraries
+    //implementation 'com.android.support:multidex:1.0.3'  //with support libraries
+
 }
