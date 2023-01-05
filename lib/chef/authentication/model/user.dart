@@ -3,25 +3,28 @@ import 'package:equatable/equatable.dart';
 class MyUser extends Equatable {
   static const String routeName = 'MyUser';
   final String id;
-  final String phoneNumber;
-  final int password;
+  final String password;
+  final String email;
+  final String imageUrl;
   final String name;
   final String city;
   final bool gender;
 
   const MyUser({
     required this.id,
-    required this.phoneNumber,
     required this.password,
+    required this.email,
+    required this.imageUrl,
     required this.name,
     this.city = 'Egypt',
     this.gender = true,
   });
 
   factory MyUser.fromFireStore(Map<String, dynamic> fromFirestore) => MyUser(
-        id: fromFirestore['id'],
-        phoneNumber: fromFirestore['phone_number'],
+    id: fromFirestore['id'],
         password: fromFirestore['password'],
+        email: fromFirestore['email'],
+        imageUrl: fromFirestore['image_url'],
         name: fromFirestore['name'],
         city: fromFirestore['city'],
         gender: fromFirestore['gender'],
@@ -30,8 +33,9 @@ class MyUser extends Equatable {
   Map<String, dynamic> toFirestore() {
     return {
       'id': id,
-      'phone_number': phoneNumber,
       'password': password,
+      'email': email,
+      'image_url': imageUrl,
       'name': name,
       'city': city,
       'gender': gender
@@ -39,5 +43,6 @@ class MyUser extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, phoneNumber, password, name, city, gender];
+  List<Object?> get props =>
+      [id, password, email, imageUrl, name, city, gender];
 }

@@ -11,8 +11,8 @@ class BuildIntroTexts extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Center(
-          child: Image.network(
-            'https://chefruler.com/images/logo.png',
+          child: Image.asset(
+            'asset/logo.png',
             width: 180,
             height: 180,
             alignment: Alignment.center,
@@ -25,8 +25,8 @@ class BuildIntroTexts extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.network(
-              'https://tse3.mm.bing.net/th?id=OIP.IWPSIHGHvHAJx03LjPXukwAAAA&pid=Api&P=0',
+            Image.asset(
+              'asset/hey.jpg',
               height: 30,
               width: 30,
             ),
@@ -61,9 +61,6 @@ class BuildIntroTexts extends StatelessWidget {
               fontWeight: FontWeight.w200,
               letterSpacing: 0.15,
               color: Colors.grey),
-        ),
-        const SizedBox(
-          height: 14,
         ),
       ],
     );
