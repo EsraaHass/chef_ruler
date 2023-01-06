@@ -1,9 +1,10 @@
-import 'package:chef_ruler/chef/authentication/view/build_into_texts.dart';
 import 'package:chef_ruler/chef/authentication/view_model/auth_cubit.dart';
 import 'package:chef_ruler/chef/authentication/view_model/auth_state.dart';
 import 'package:chef_ruler/core/utils/circle_progress.dart';
+import 'package:chef_ruler/core/utils/contant/build_into_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
@@ -13,68 +14,41 @@ class SignUp extends StatelessWidget {
   late String phoneNumber;
 
   Widget _buildPhoneFormField() {
-    return Row(
-      children: [
-        Expanded(
-          flex: 1,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-              borderRadius: const BorderRadius.all(const Radius.circular(6)),
-            ),
-            child: Text(
-              generateCountryFlag() + ' +20',
-              style: const TextStyle(fontSize: 18, letterSpacing: 2.0),
-            ),
+    return IntlPhoneField(
+      keyboardType: TextInputType.phone,
+      onSaved: (value) {
+        phoneNumber = value!.number;
+      },
+      decoration: const InputDecoration(
+        hintText: 'Phone Number',
+        isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey, width: 1),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey, width: 1),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 1),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey, width: 1),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey,
+            width: 1.0,
           ),
         ),
-        const SizedBox(
-          width: 16,
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue),
-              borderRadius: const BorderRadius.all(const Radius.circular(6)),
-            ),
-            child: TextFormField(
-              autofocus: true,
-              style: const TextStyle(
-                fontSize: 18,
-                letterSpacing: 2.0,
-              ),
-              decoration: const InputDecoration(border: InputBorder.none),
-              cursorColor: Colors.black,
-              keyboardType: TextInputType.phone,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter yout phone number!';
-                } else if (value.length < 11) {
-                  return 'Too short for a phone number!';
-                }
-                return null;
-              },
-              onSaved: (value) {
-                phoneNumber = value!;
-              },
-            ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 1.0,
           ),
         ),
-      ],
+      ),
+      initialCountryCode: 'eg',
     );
-  }
-
-  String generateCountryFlag() {
-    String countryCode = 'eg';
-
-    String flag = countryCode.toUpperCase().replaceAllMapped(RegExp(r'[A-Z]'),
-        (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
-
-    return flag;
   }
 
   Future<void> _register(BuildContext context) async {
@@ -122,6 +96,7 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -133,42 +108,46 @@ class SignUp extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               height: double.infinity,
-              child: Stack(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BuildIntroTexts(),
-                  Positioned(
-                      top: 100,
-                      right: 0,
-                      left: 0,
-                      bottom: 0,
-                      child: _buildPhoneFormField()),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          showPircleProgress(context);
-                          _register(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                  Column(
+                    children: [
+                      const BuildIntroTexts(),
+                      SizedBox(
+                        height: size * 0.03,
+                      ),
+                      _buildPhoneFormField(),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        height: 55,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            showPircleProgress(context);
+                            _register(context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          child: const Text(
+                            'متابعه',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
-                        child: const Text(
-                          'متابعه',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600),
-                        ),
                       ),
-                    ),
-                  ),
-                  _buildPhoneNumberSubmitedBloc(),
+                      _buildPhoneNumberSubmitedBloc(),
+                    ],
+                  )
                 ],
               ),
             ),

@@ -12,7 +12,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
     emit(Loading());
 
     await auth.verifyPhoneNumber(
-      phoneNumber: '+2$phoneNumber',
+      phoneNumber: '+20$phoneNumber',
       timeout: const Duration(seconds: 14),
       verificationCompleted: verificationCompleted,
       verificationFailed: verificationFailed,
@@ -28,7 +28,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
 
   void verificationFailed(FirebaseAuthException error) {
     print('verificationFailed ${error.toString()}');
-    emit(ErrorOcure(error.toString()));
+    emit(ErrorOcure('حدث خطأ يرجي المحاوله لاحقا'));
   }
 
   codeSent(String verificationId, int? resendingToken) {
@@ -47,13 +47,12 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
 
     await signIn(credential);
   }
-
   Future<void> signIn(PhoneAuthCredential credential) async {
     try {
       await auth.signInWithCredential(credential);
       emit(PhoneOtpVerified());
     } catch (error) {
-      emit(ErrorOcure(error.toString()));
+      emit(ErrorOcure('لقد حاولت الدخول من نفس الرقم عده مرات'));
     }
   }
 

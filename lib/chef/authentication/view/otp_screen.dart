@@ -120,7 +120,7 @@ class OtpScreen extends StatelessWidget {
                         height: size * 0.01,
                       ),
                       Text(
-                        '$phoneNumber',
+                        '+20$phoneNumber',
                         style: Theme.of(context)
                             .textTheme
                             .headline5
@@ -147,7 +147,7 @@ class OtpScreen extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: SizedBox(
                     width: double.infinity,
-                    height: 50,
+                    height: 55,
                     child: ElevatedButton(
                       onPressed: () {
                         showPircleProgress(context);
@@ -156,7 +156,7 @@ class OtpScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.red,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
                       child: const Text(

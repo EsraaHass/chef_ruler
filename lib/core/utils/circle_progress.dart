@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-void showPircleProgress(BuildContext context) {
+ showPircleProgress(BuildContext context) {
   AlertDialog alertDialog = const AlertDialog(
     backgroundColor: Colors.transparent,
     elevation: 0,
-    content: Center(
+    content: Align(
+      alignment: AlignmentDirectional.center,
       child: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
       ),
