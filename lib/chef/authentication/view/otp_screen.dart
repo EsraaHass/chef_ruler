@@ -62,7 +62,7 @@ class OtpScreen extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is Loading) {
-          showPircleProgress(context);
+          showCircleProgress(context);
         }
 
         if (state is PhoneOtpVerified) {
@@ -150,7 +150,7 @@ class OtpScreen extends StatelessWidget {
                     height: 55,
                     child: ElevatedButton(
                       onPressed: () {
-                        showPircleProgress(context);
+                        showCircleProgress(context);
                         _login(context);
                       },
                       style: ElevatedButton.styleFrom(

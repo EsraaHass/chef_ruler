@@ -69,7 +69,7 @@ class SignUp extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is Loading) {
-          showPircleProgress(context);
+          showCircleProgress(context);
         }
 
         if (state is PhoneNumberSubmitted) {
@@ -127,7 +127,7 @@ class SignUp extends StatelessWidget {
                         height: 55,
                         child: ElevatedButton(
                           onPressed: () {
-                            showPircleProgress(context);
+                            showCircleProgress(context);
                             _register(context);
                           },
                           style: ElevatedButton.styleFrom(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
- showPircleProgress(BuildContext context) {
+ showCircleProgress(BuildContext context) {
   AlertDialog alertDialog = const AlertDialog(
     backgroundColor: Colors.transparent,
     elevation: 0,

@@ -21,6 +21,7 @@ dependencies:
   animate_do: ^3.0.2
   cached_network_image:
   carousel_slider: ^4.2.1
+  persistent_bottom_nav_bar: ^5.0.2
   google_fonts: ^3.0.1
   shimmer: ^2.0.0
   dio: ^4.0.6
@@ -47,24 +48,15 @@ flutter:
   assets:
     - asset/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+    - family: Cairo
+      # - family: Balsamiq_Sans
+      fonts:
+        #  - asset: fonts/Balsamiq_Sans/BalsamiqSans-Regular.ttf
+        #  - asset: fonts/Balsamiq_Sans/BalsamiqSans-Italic.ttf
+        # - asset: fonts/cairo/Cairo-Regular.ttf
+        # - asset: fonts/cairo/Cairo-Medium.ttf
+        - asset: fonts/cairo/Cairo-SemiBold.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
